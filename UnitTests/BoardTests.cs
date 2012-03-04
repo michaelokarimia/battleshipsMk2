@@ -1,4 +1,6 @@
-﻿using Battleships;
+﻿using System;
+using System.Text;
+using Battleships;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -43,9 +45,34 @@ namespace UnitTests
         [Test]
         public void ShotFiredAtEmptySquareIsAMiss()
         {
-            Assert.AreEqual(GridValues.EmptyCellValue, board.GetCellValue(5,5));
             board.FireShot(5, 5); 
             Assert.AreEqual(GridValues.MissedShot,board.GetCellValue(5,5));
+        }
+
+        [Test]
+        public void ShotFiredTwiceASameSquareThrowsInvalidShotException()
+        {
+            board.FireShot(5, 5);
+            Assert.Throws<InvalidShotException>(() => board.FireShot(5, 5), "Did not throw InvalidShotException after firing on the same square twice");
+        }
+
+        [Test]
+        public void FiringOutsideOfBoardDimensionsThrowsIndexOutOfRangeException()
+        {
+            Assert.Throws<IndexOutOfRangeException>(() => board.FireShot(-1, 89),
+                                     "Did not throw exception after firing outside the board dimensions");
+        }
+
+        [Test]
+        public void ToStringMethodIsOverriden()
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < HEIGHT; i++)
+            {
+                sb.AppendLine("-1-1-1-1-1-1-1-1-1-1");
+            }
+            string stringOutputOfGrid = sb.ToString();
+            Assert.AreEqual(stringOutputOfGrid, board.ToString());
         }
     }
 }

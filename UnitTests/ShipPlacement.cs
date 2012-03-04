@@ -110,5 +110,28 @@ namespace UnitTests
             board.AddShip(new AircraftCarrier(), position);
             Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new BattleShip(), position));
         }
+
+        [Test]
+        public void AddingHorizontalShipOnTopOfAnotherThrowsException()
+        {
+            var position = new Position(1,7, Orientation.Horizontal);
+            board.AddShip(new BattleShip(), position);
+            var position2 = new Position(4,7,Orientation.Horizontal);
+            Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position2));
+        }
+
+        [Test]
+        public void PlacingShipOffHorizonalEdgeOfBoardThrowsException()
+        {
+            var position = new Position(9, 3, Orientation.Horizontal);
+            Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position));
+        }
+
+        [Test]
+        public void PlacingShipOffVerticalEdgeOfBoardThrowsException()
+        {
+            var position = new Position(4, 8, Orientation.Vertical);
+            Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position));
+        }
     }
 }

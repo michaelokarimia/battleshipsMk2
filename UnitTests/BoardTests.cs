@@ -78,25 +78,25 @@ namespace UnitTests
         [Test]
         public void CanAddAnAircraftCarrierOnANewBoard()
         {
-            var carrier = new AircraftCarrier();
-            board.AddShip(carrier);
+            var position = new Position(0,0,Orientation.Vertical);
+            board.AddShip(new AircraftCarrier(), position);
         }
 
         [Test]
         public void AddingSameAircraftCarrierTwiceThrowsException()
         {
-            var carrier = new AircraftCarrier();
-            board.AddShip(carrier);
-            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(carrier));
+            var position = new Position(0, 0, Orientation.Vertical);
+            var aircraftCarrier = new AircraftCarrier();
+            board.AddShip(aircraftCarrier, position);
+            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(aircraftCarrier, position));
         }
 
         [Test]
         public void AddingSecondAircraftCarrierThrowsException()
         {
-            var carrier = new AircraftCarrier();
-            board.AddShip(carrier);
-            var carrier2 = new AircraftCarrier();
-            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(carrier2));
+            var position = new Position(0, 0, Orientation.Vertical);
+            board.AddShip(new AircraftCarrier(), position);
+            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(new AircraftCarrier(), position));
         }
     }
     

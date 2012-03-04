@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using Battleships;
 
 namespace Battleships
 {
@@ -10,6 +8,7 @@ namespace Battleships
         private readonly int _height;
         private readonly int _width;
         private readonly GridValues[,] array;
+        private List<AircraftCarrier> PlacedShip = new List<AircraftCarrier>();
 
         public Board(int width, int height)
         {
@@ -69,10 +68,20 @@ namespace Battleships
                 }
                 sb.AppendLine("");
             }
-                
-            
-
             return sb.ToString();
+        }
+
+        public void AddShip(AircraftCarrier carrier)
+        {
+            if (PlacedShip.Contains(carrier))
+                throw new ShipAlreadyPlacedException();
+
+            if(PlacedShip.Exists(x=> x.GetType().Equals(typeof(AircraftCarrier))))
+            {
+                throw new ShipAlreadyPlacedException();
+            }
+            
+            PlacedShip.Add(carrier);
         }
     }
 }

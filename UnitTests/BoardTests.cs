@@ -74,5 +74,30 @@ namespace UnitTests
             string stringOutputOfGrid = sb.ToString();
             Assert.AreEqual(stringOutputOfGrid, board.ToString());
         }
+
+        [Test]
+        public void CanAddAnAircraftCarrierOnANewBoard()
+        {
+            var carrier = new AircraftCarrier();
+            board.AddShip(carrier);
+        }
+
+        [Test]
+        public void AddingSameAircraftCarrierTwiceThrowsException()
+        {
+            var carrier = new AircraftCarrier();
+            board.AddShip(carrier);
+            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(carrier));
+        }
+
+        [Test]
+        public void AddingSecondAircraftCarrierThrowsException()
+        {
+            var carrier = new AircraftCarrier();
+            board.AddShip(carrier);
+            var carrier2 = new AircraftCarrier();
+            Assert.Throws<ShipAlreadyPlacedException>(() => board.AddShip(carrier2));
+        }
     }
+    
 }

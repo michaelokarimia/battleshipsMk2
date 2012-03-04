@@ -1,12 +1,12 @@
-﻿using NUnit.Framework;
+﻿using Battleships;
+using NUnit.Framework;
 
-namespace Battleships
+namespace UnitTests
 {
     [TestFixture]
     public class BoardTests
     {
         private Board board;
-       
         private const int WIDTH = 10;
         private const int HEIGHT = 10;
 
@@ -31,11 +31,11 @@ namespace Battleships
         [Test]
         public void IntializesWithEveryCellWithEmptySquareValue()
         {
-            for (var i = 0; i < HEIGHT; i++)
+            for (var x = 0; x < WIDTH; x++)
             {
-                for (var j = 0; j < WIDTH; j++)
+                for (var y = 0; y < HEIGHT; y++)
                 {
-                    Assert.AreEqual(GridValues.EMPTY_CELL_VALUE,board.GetCellValue(i, j));
+                    Assert.AreEqual(GridValues.EmptyCellValue,board.GetCellValue(x, y));
                 }
             }
         }
@@ -43,9 +43,9 @@ namespace Battleships
         [Test]
         public void ShotFiredAtEmptySquareIsAMiss()
         {
-            board.FireShot(5, 5);
-                  
-            Assert.AreEqual(GridValues.MISSED_SHOT,board.GetCellValue(5,5));
+            Assert.AreEqual(GridValues.EmptyCellValue, board.GetCellValue(5,5));
+            board.FireShot(5, 5); 
+            Assert.AreEqual(GridValues.MissedShot,board.GetCellValue(5,5));
         }
     }
 }

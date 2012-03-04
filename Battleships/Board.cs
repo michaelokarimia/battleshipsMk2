@@ -1,27 +1,38 @@
-﻿namespace Battleships
+﻿using System.Linq;
+using Battleships;
+
+namespace Battleships
 {
     public class Board
     {
-        private readonly int height;
-        private readonly int width;
-        private GridValues[,] array;
+        private readonly int _height;
+        private readonly int _width;
+        private readonly GridValues[,] array;
 
         public Board(int width, int height)
         {
-            this.height = height;
-            this.width = width;
+            _height = height;
+            _width = width;
             array = new GridValues[width, height];
-        }
 
+            for (var x = 0; x < _width; x++)
+            {
+                for (var y = 0; y < _height; y++)
+                {
+                    array[x, y] = GridValues.EmptyCellValue;
+                }
+            }
+
+        }     
 
         public int Width()
         {
-            return width;
+            return _width;
         }
 
         public int Height()
         {
-            return height;
+            return _height;
         }
 
 
@@ -32,9 +43,9 @@
 
         public void FireShot(int x, int y)
         {
-            if (array[x,y].Equals(GridValues.EMPTY_CELL_VALUE))
+            if (array[x,y].Equals(GridValues.EmptyCellValue))
             {
-                array[x, y] = GridValues.MISSED_SHOT;
+                array[x, y] = GridValues.MissedShot;
             }
         }
     }

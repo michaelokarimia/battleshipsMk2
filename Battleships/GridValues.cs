@@ -2,7 +2,7 @@
 {
     public enum GridValues
     {
-        EMPTY_CELL_VALUE = 0,
-        MISSED_SHOT = 1
+        EmptyCellValue = -1,
+        MissedShot = 1
     }
 }

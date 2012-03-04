@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace Battleships
@@ -92,15 +93,25 @@ namespace Battleships
             {
                 if (coOrd.X + vessel.Length < _width)
                 {
-                    for (int x = coOrd.X; x < vessel.Length; x++)
+                    for (int x = coOrd.X; x < (vessel.Length+ coOrd.X); x++)
                     {
                         if (array[x, coOrd.Y] != GridValues.EmptyCellValue)
                         {
                             throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
                                                                                   array[x, coOrd.Y]));
                         }
+                    }
+                    //have checked ahead that the grid values are valid, now update the cells
+                    for (int x = coOrd.X; x < (vessel.Length + coOrd.X); x++)
+                    {
                         array[x, coOrd.Y] = vessel.GridValue;
                     }
+                }
+                else
+                {
+                    throw new InvalidShipPlacementException(
+                        string.Format("Horizontal ship won't fit on the board, attempted to add: {0}",
+                                      coOrd.ToString()));
                 }
             }
             else
@@ -114,11 +125,21 @@ namespace Battleships
                             throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
                                                                                   array[coOrd.X, y]));
                         }
+                    }
+                    //have checked ahead that the grid values are valid, now update the cells
+                    for (int y = coOrd.Y; y < (vessel.Length + coOrd.Y); y++)
+                    {
                         array[coOrd.X, y] = vessel.GridValue;
                     }
                 }
+                else
+                {
+                    throw new InvalidShipPlacementException(
+                       string.Format("Vertical ship won't fit on the board, attempted to add: {0}",
+                                     coOrd.ToString()));
+                }
 
-                
+
             }
         }
     }

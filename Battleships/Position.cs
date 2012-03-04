@@ -27,5 +27,10 @@
         {
             get { return x; }
         }
+
+        public new string ToString()
+        {
+            return string.Format("X = {0}, Y={1}, {2}", x, y, orientation.ToString());
+        }
     }
 }

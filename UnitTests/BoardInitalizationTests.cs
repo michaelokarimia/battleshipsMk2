@@ -52,5 +52,13 @@ namespace UnitTests
             string stringOutputOfGrid = sb.ToString();
             Assert.AreEqual(stringOutputOfGrid, board.ToString());
         }
+
+        [Test]
+        public void ToStringMethodOfPositionStrucIsOverriden()
+        {
+            var p = new Position(9,5, Orientation.Horizontal);
+
+            Assert.AreEqual("X = 9, Y=5, Horizontal", p.ToString());
+        }
     }
 }

@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardTests.cs" />
+    <Compile Include="ShipPlacement.cs" />
+    <Compile Include="BoardInitalizationTests.cs" />
+    <Compile Include="ShotTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

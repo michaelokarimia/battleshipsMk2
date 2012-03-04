@@ -1,15 +1,15 @@
 ﻿namespace Battleships
 {
-    public class AircraftCarrier : IShip
+    public class BattleShip : IShip
     {
         public GridValues GridValue
         {
-            get { return GridValues.AircraftcarrierIntact; }
+            get { return GridValues.BattleshipIntact; }
         }
 
         public int Length
         {
-            get { return 5; }
+            get { return 4; }
         }
     }
 }

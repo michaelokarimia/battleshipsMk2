@@ -1,49 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Battleships
 {
-    public enum Orientation
-    {
-        Horizontal,
-        Vertical
-    }
-    public struct Position
-    {
-        private readonly int x;
-        private readonly int y;
-        private readonly Orientation orientation;
-
-        public Position(int x, int y, Orientation orientation)
-        {
-            this.x = x;
-            this.y = y;
-            this.orientation = orientation;
-        }
-
-        public Orientation Orientation1
-        {
-            get { return orientation; }
-        }
-
-        public int Y
-        {
-            get { return y; }
-        }
-
-        public int X
-        {
-            get { return x; }
-        }
-    }
-
     public class Board
     {
         private readonly int _height;
         private readonly int _width;
         private readonly GridValues[,] array;
-        private List<AircraftCarrier> PlacedShip = new List<AircraftCarrier>();
+        private readonly List<IShip> placedShips = new List<IShip>();
 
         public Board(int width, int height)
         {
@@ -106,17 +71,55 @@ namespace Battleships
             return sb.ToString();
         }
 
-        public void AddShip(AircraftCarrier carrier, Position position)
+        public void AddShip(IShip vessel, Position position)
         {
-            if (PlacedShip.Contains(carrier))
+            if (placedShips.Contains(vessel))
                 throw new ShipAlreadyPlacedException();
 
-            if (PlacedShip.Exists(x => x.GetType().Equals(typeof(AircraftCarrier))))
+            if (placedShips.Exists(x => x.GetType().Equals(vessel.GetType())))
             {
                 throw new ShipAlreadyPlacedException();
             }
 
-            PlacedShip.Add(carrier);
+            AddShipToGrid(position, vessel);
+
+            placedShips.Add(vessel);
+        }
+
+        private void AddShipToGrid(Position coOrd, IShip vessel)
+        {
+            if (coOrd.Orientation == Orientation.Horizontal)
+            {
+                if (coOrd.X + vessel.Length < _width)
+                {
+                    for (int x = coOrd.X; x < vessel.Length; x++)
+                    {
+                        if (array[x, coOrd.Y] != GridValues.EmptyCellValue)
+                        {
+                            throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
+                                                                                  array[coOrd.X, coOrd.Y]));
+                        }
+                        array[x, coOrd.Y] = vessel.GridValue;
+                    }
+                }
+            }
+            else
+            {
+                if (coOrd.Y + vessel.Length < _height)
+                {
+                    for (int y = coOrd.Y; y < vessel.Length; y++)
+                    {
+                        if (array[coOrd.X, y] != GridValues.EmptyCellValue)
+                        {
+                            throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
+                                                                                  array[coOrd.X, coOrd.Y]));
+                        }
+                        array[coOrd.X, y] = vessel.GridValue;
+                    }
+                }
+
+                
+            }
         }
     }
 }

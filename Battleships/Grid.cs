@@ -1,27 +1,36 @@
 ﻿using System;
+using System.Linq;
 
 namespace Battleships
 {
     public class Grid
     {
-        private readonly int _height;
-        private readonly int _width;
+        private readonly int height;
+        private readonly int width;
+        private int[,] array;
 
-        public Grid(int height, int width)
+        public Grid(int width, int height)
         {
-            _height = height;
-            _width = width;
+            this.height = height;
+            this.width = width;
+            array = new int[width,height];
         }
 
 
         public int Width()
         {
-            return _width;
+            return width;
         }
 
         public int Height()
         {
-            return _height;
+            return height;
+        }
+
+
+        public int GetCellValue(int height, int width)
+        {
+            return array[height,width];
         }
     }
 }

@@ -7,7 +7,7 @@ obj/
 _ReSharper*/
 *.resharper
 [Tt]est[Rr]esult*
-
+*.Resharper.user
 
 #NuGet
 packages/

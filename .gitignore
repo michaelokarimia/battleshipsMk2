@@ -1,0 +1,16 @@
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+
+
+#NuGet
+packages/
+
+
+*.swp

@@ -69,6 +69,33 @@ namespace UnitTests
         }
 
         [Test]
+        public void CanAddHorizontalBattleshipAndVerticalDestroyerAsideEachOther()
+        {
+            var position1 = new Position(0, 0, Orientation.Horizontal);
+            var position2 = new Position(0, 3, Orientation.Vertical);
+            board.AddShip(new BattleShip(), position1);
+            board.AddShip(new Destroyer(), position2);
+        }
+
+        [Test]
+        public void HorizontalBattleshipAndVerticalDestroyerOverEachOtherThrowsException()
+        {
+            var position1 = new Position(0, 2, Orientation.Horizontal);
+            var position2 = new Position(2, 0, Orientation.Vertical);
+            board.AddShip(new BattleShip(), position1);
+            Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position2));
+        }
+
+        [Test]
+        public void BattleshipAndDestroyerVerticallyOverEachOtherThrowsException()
+        {
+            var position1 = new Position(4, 4, Orientation.Vertical);
+            var position2 = new Position(4, 5, Orientation.Vertical);
+            board.AddShip(new BattleShip(), position1);
+            Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position2));
+        }
+
+        [Test]
         public void AddingAircraftcarrierUpdateGridValues()
         {
             var position = new Position(0, 0, Orientation.Vertical);

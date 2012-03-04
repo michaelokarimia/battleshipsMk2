@@ -97,7 +97,7 @@ namespace Battleships
                         if (array[x, coOrd.Y] != GridValues.EmptyCellValue)
                         {
                             throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
-                                                                                  array[coOrd.X, coOrd.Y]));
+                                                                                  array[x, coOrd.Y]));
                         }
                         array[x, coOrd.Y] = vessel.GridValue;
                     }
@@ -107,12 +107,12 @@ namespace Battleships
             {
                 if (coOrd.Y + vessel.Length < _height)
                 {
-                    for (int y = coOrd.Y; y < vessel.Length; y++)
+                    for (int y = coOrd.Y; y < (vessel.Length + coOrd.Y); y++)
                     {
                         if (array[coOrd.X, y] != GridValues.EmptyCellValue)
                         {
                             throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
-                                                                                  array[coOrd.X, coOrd.Y]));
+                                                                                  array[coOrd.X, y]));
                         }
                         array[coOrd.X, y] = vessel.GridValue;
                     }

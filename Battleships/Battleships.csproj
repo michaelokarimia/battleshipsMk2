@@ -42,6 +42,7 @@
     <Compile Include="AircraftCarrier.cs" />
     <Compile Include="BattleShip.cs" />
     <Compile Include="Board.cs" />
+    <Compile Include="Destroyer.cs" />
     <Compile Include="GridValues.cs" />
     <Compile Include="InvalidShipPlacementException.cs" />
     <Compile Include="InvalidShotException.cs" />

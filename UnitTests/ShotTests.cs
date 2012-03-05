@@ -26,14 +26,14 @@ namespace UnitTests
         }
 
         [Test]
-        public void ShotFiredTwiceASameSquareThrowsInvalidShotException()
+        public void ShotFiredTwiceASameSquareThrowsException()
         {
             board.FireShot(5, 5);
             Assert.Throws<InvalidShotException>(() => board.FireShot(5, 5), "Did not throw InvalidShotException after firing on the same square twice");
         }
 
         [Test]
-        public void FiringOutsideOfBoardDimensionsThrowsIndexOutOfRangeException()
+        public void FiringOutsideOfBoardDimensionsException()
         {
             Assert.Throws<IndexOutOfRangeException>(() => board.FireShot(-1, 89),
                                      "Did not throw exception after firing outside the board dimensions");

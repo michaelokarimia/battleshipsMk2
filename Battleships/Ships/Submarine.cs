@@ -8,7 +8,7 @@ namespace Battleships.Ships
     {
         public GridValues GridValue
         {
-            get { return GridValues.Submarine; }
+            get { return GridValues.SubmarineIntact; }
         }
 
         public int Length

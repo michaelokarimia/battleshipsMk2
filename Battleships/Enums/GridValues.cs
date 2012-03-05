@@ -8,6 +8,6 @@
         DestroyerIntact = 3,
         BattleshipIntact = 4,
         AircraftcarrierIntact = 5,
-        Submarine = 7
+        SubmarineIntact = 7
     }
 }

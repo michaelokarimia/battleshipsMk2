@@ -1,5 +1,7 @@
 ﻿using System;
 using Battleships;
+using Battleships.Enums;
+using Battleships.Exceptions;
 using NUnit.Framework;
 
 namespace UnitTests

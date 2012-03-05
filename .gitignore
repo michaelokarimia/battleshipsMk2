@@ -2,7 +2,7 @@ obj/
 [Bb]in
 [Dd]ebug*/
 [Rr]elease*/
-
+*.suo
 #Tooling
 _ReSharper*/
 *.resharper

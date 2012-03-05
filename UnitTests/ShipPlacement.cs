@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Text;
 using Battleships;
+using Battleships.Enums;
+using Battleships.Exceptions;
+using Battleships.Ships;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -132,6 +135,27 @@ namespace UnitTests
         {
             var position = new Position(4, 8, Orientation.Vertical);
             Assert.Throws<InvalidShipPlacementException>(() => board.AddShip(new Destroyer(), position));
+        }
+
+        [Test]
+        public void AllShipsPlacedReturnsTrue()
+        {
+             board.AddShip(new AircraftCarrier(), new Position(0, 0, Orientation.Horizontal));
+             board.AddShip(new BattleShip(), new Position(0,1,Orientation.Horizontal));
+             board.AddShip(new Destroyer(), new Position(0, 2, Orientation.Horizontal));
+             board.AddShip(new Submarine(), new Position(0, 3, Orientation.Horizontal));
+             board.AddShip(new Minesweeper(), new Position(0, 4, Orientation.Horizontal));
+
+             Assert.True(board.AreAllShipsPlaced(), "Not every ship was placed");
+        }
+
+        [Test]
+        public void AllShipsPlacedReturnFalseWhenNotAllShipsPlaced()
+        {
+            board.AddShip(new AircraftCarrier(), new Position(0, 0, Orientation.Horizontal));
+            board.AddShip(new BattleShip(), new Position(0, 1, Orientation.Horizontal));
+            
+            Assert.False(board.AreAllShipsPlaced(), "Not every ship was placed, yet reported as true");
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Battleships
+﻿using Battleships.Enums;
+
+namespace Battleships.Ships
 {
     public class AircraftCarrier : IShip
     {

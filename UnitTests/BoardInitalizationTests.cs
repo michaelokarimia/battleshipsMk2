@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Battleships;
+using Battleships.Enums;
 using NUnit.Framework;
 
 namespace UnitTests
@@ -60,5 +61,7 @@ namespace UnitTests
 
             Assert.AreEqual("X = 9, Y=5, Horizontal", p.ToString());
         }
+
+       
     }
 }

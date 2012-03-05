@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Battleships
+namespace Battleships.Exceptions
 {
     public class ShipAlreadyPlacedException : Exception
     {

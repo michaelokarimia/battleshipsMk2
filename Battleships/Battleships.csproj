@@ -39,18 +39,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AircraftCarrier.cs" />
-    <Compile Include="BattleShip.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Destroyer.cs" />
-    <Compile Include="GridValues.cs" />
-    <Compile Include="InvalidShipPlacementException.cs" />
-    <Compile Include="InvalidShotException.cs" />
-    <Compile Include="IShip.cs" />
-    <Compile Include="Orientation.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="Enums\GridValues.cs" />
+    <Compile Include="Enums\Orientation.cs" />
+    <Compile Include="Enums\Position.cs" />
+    <Compile Include="Exceptions\InvalidShipPlacementException.cs" />
+    <Compile Include="Exceptions\InvalidShotException.cs" />
+    <Compile Include="Exceptions\ShipAlreadyPlacedException.cs" />
+    <Compile Include="Gamestate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShipAlreadyPlacedException.cs" />
+    <Compile Include="Ships\AircraftCarrier.cs" />
+    <Compile Include="Ships\BattleShip.cs" />
+    <Compile Include="Ships\Destroyer.cs" />
+    <Compile Include="Ships\IShip.cs" />
+    <Compile Include="Ships\Minesweeper.cs" />
+    <Compile Include="Ships\Submarine.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

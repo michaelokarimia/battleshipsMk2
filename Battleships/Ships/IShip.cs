@@ -6,5 +6,6 @@ namespace Battleships.Ships
     {
         GridValues GridValue  { get; }
         int Length { get; }
+        void AddToGrid(GridValues[,] array);
     }
 }

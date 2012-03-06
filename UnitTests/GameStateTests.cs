@@ -31,11 +31,11 @@ namespace UnitTests
         [Test]
         public void ShipDeploymentEndsWhenAllShipsPlaced()
         {
-            gamestate.AddPlayerShip(new Position(0, 9, Orientation.Horizontal), new AircraftCarrier());
-            gamestate.AddPlayerShip(new Position(0, 0, Orientation.Horizontal), new BattleShip());
-            gamestate.AddPlayerShip(new Position(4, 1, Orientation.Horizontal), new Submarine());
-            gamestate.AddPlayerShip(new Position(4, 3, Orientation.Vertical), new Destroyer());
-            gamestate.AddPlayerShip(new Position(7, 7, Orientation.Vertical), new Minesweeper());
+            gamestate.AddPlayerShip(new AircraftCarrier(new Position(0, 9, Orientation.Horizontal)));
+            gamestate.AddPlayerShip(new BattleShip(new Position(0, 0, Orientation.Horizontal)));
+            gamestate.AddPlayerShip(new Submarine(new Position(4, 1, Orientation.Horizontal)));
+            gamestate.AddPlayerShip(new Destroyer(new Position(4, 3, Orientation.Vertical) ));
+            gamestate.AddPlayerShip(new Minesweeper(new Position(7, 7, Orientation.Vertical)));
 
             Assert.False(gamestate.IsShipDeploymentPhase());
         }

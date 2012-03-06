@@ -1,5 +1,4 @@
-﻿using System;
-using Battleships.Enums;
+﻿using Battleships.Enums;
 using Battleships.Ships;
 
 namespace Battleships
@@ -23,9 +22,9 @@ namespace Battleships
             return _IsShipDeploymentPhase;
         }
 
-        public void AddPlayerShip(Position position, IShip vessel)
+        public void AddPlayerShip(IShip vessel)
         {
-            board.AddShip(vessel, position);
+            board.AddShip(vessel);
             _IsShipDeploymentPhase = !board.AreAllShipsPlaced();
         }
     }

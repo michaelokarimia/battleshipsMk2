@@ -76,7 +76,7 @@ namespace Battleships
             return sb.ToString();
         }
 
-        public void AddShip(IShip vessel, Position position)
+        public void AddShip(IShip vessel)
         {
             if (placedShips.Contains(vessel))
                 throw new ShipAlreadyPlacedException();
@@ -86,71 +86,19 @@ namespace Battleships
                 throw new ShipAlreadyPlacedException();
             }
 
-            AddShipToGrid(position, vessel);
+            AddShipToGrid(vessel);
 
             placedShips.Add(vessel);
         }
 
-        private void AddShipToGrid(Position gridSquare, IShip vessel)
+        private void AddShipToGrid(IShip vessel)
         {
-            switch (gridSquare.Orientation)
-            {
-                case Orientation.Horizontal:
-                    PlaceShipHorizontally(gridSquare, vessel);
-                    break;
-                    case Orientation.Vertical:
-                    PlaceShipVertically(gridSquare, vessel);
-                    break;
-            }
+            vessel.AddToGrid(array);
         }
 
-        private void PlaceShipVertically(Position shipPosition, IShip vessel)
-        {
-            if (shipPosition.Y + vessel.Length >= _height)
-            {
-                throw new InvalidShipPlacementException(
-                    string.Format("Vertical ship won't fit on the board, attempted to add: {0}",
-                                  shipPosition.ToString()));
-            }
-            int row = shipPosition.X;
+       
 
-            for (int y = shipPosition.Y; y < (vessel.Length + shipPosition.Y); y++)
-            {
-                if (array[row, y] != GridValues.EmptyCellValue)
-                {
-                    throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
-                                                                          array[row, y]));
-                }
-            }
-
-            for (int y = shipPosition.Y; y < (vessel.Length + shipPosition.Y); y++)
-            {
-                array[row, y] = vessel.GridValue;
-            }
-        }
-
-        private void PlaceShipHorizontally(Position shipPosition, IShip vessel)
-        {
-            if (shipPosition.X + vessel.Length >= _width)
-            {
-                throw new InvalidShipPlacementException(
-                    string.Format("Horizontal ship won't fit on the board, attempted to add: {0}",
-                                  shipPosition.ToString()));
-            }
-            for (var x = shipPosition.X; x < (vessel.Length + shipPosition.X); x++)
-            {
-                if (array[x, shipPosition.Y] != GridValues.EmptyCellValue)
-                {
-                    throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
-                                                                          array[x, shipPosition.Y]));
-                }
-            }
-            
-            for (var x = shipPosition.X; x < (vessel.Length + shipPosition.X); x++)
-            {
-                array[x, shipPosition.Y] = vessel.GridValue;
-            }
-        }
+       
 
         public bool AreAllShipsPlaced()
         {

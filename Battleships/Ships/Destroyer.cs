@@ -3,37 +3,31 @@ using Battleships.Exceptions;
 
 namespace Battleships.Ships
 {
-    public class Destroyer : IShip
+    public class Destroyer : Ship
     {
-        private Position gridSquare;
-
+       
         public Destroyer(Position coOrdindate)
         {
-            gridSquare = coOrdindate;
+            Position = coOrdindate;
+            GridUpdator = GridUpdateFactory.GetOrientatedFactory(coOrdindate);
         }
 
-        public GridValues GridValue
+
+        public Position CoOrdinate
+        {
+            get { return Position; }
+        }
+        public override GridValues GridValue
         {
             get { return GridValues.DestroyerIntact; }
         }
 
-        public int Length
+        public override int Length
         {
             get { return 3; }
         }
 
-        public void AddToGrid(GridValues[,] array)
-        {
-            switch (gridSquare.Orientation)
-            {
-                case Orientation.Horizontal:
-                    PlaceShipHorizontally(gridSquare, array);
-                    break;
-                case Orientation.Vertical:
-                    PlaceShipVertically(gridSquare, array);
-                    break;
-            }
-        }
+      
 
         private void PlaceShipVertically(Position shipPosition, GridValues[,] array)
         {

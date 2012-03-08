@@ -13,7 +13,7 @@ namespace Battleships
         private readonly int _height;
         private readonly int _width;
         private readonly GridValues[,] array;
-        private readonly List<IShip> placedShips = new List<IShip>();
+        private readonly List<Ship> placedShips = new List<Ship>();
 
         public Board(int width, int height)
         {
@@ -76,7 +76,7 @@ namespace Battleships
             return sb.ToString();
         }
 
-        public void AddShip(IShip vessel)
+        public void AddShip(Ship vessel)
         {
             if (placedShips.Contains(vessel))
                 throw new ShipAlreadyPlacedException();
@@ -91,7 +91,7 @@ namespace Battleships
             placedShips.Add(vessel);
         }
 
-        private void AddShipToGrid(IShip vessel)
+        private void AddShipToGrid(Ship vessel)
         {
             vessel.AddToGrid(array);
         }

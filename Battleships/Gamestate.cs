@@ -22,7 +22,7 @@ namespace Battleships
             return _IsShipDeploymentPhase;
         }
 
-        public void AddPlayerShip(IShip vessel)
+        public void AddPlayerShip(Ship vessel)
         {
             board.AddShip(vessel);
             _IsShipDeploymentPhase = !board.AreAllShipsPlaced();

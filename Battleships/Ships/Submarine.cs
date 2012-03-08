@@ -4,38 +4,30 @@ using Battleships.Exceptions;
 
 namespace Battleships.Ships
 {
-    public class Submarine : IShip
+    public class Submarine : Ship
 
     {
-        private Position gridSquare;
-
         public Submarine(Position coOrdinate)
         {
-            gridSquare = coOrdinate;
+            Position = coOrdinate;
+            GridUpdator = GridUpdateFactory.GetOrientatedFactory(coOrdinate);
         }
 
-        public GridValues GridValue
+        public Position CoOrdinate
+        {
+            get { return Position; }
+        }
+
+        public override GridValues GridValue
         {
             get { return GridValues.SubmarineIntact; }
         }
 
-        public int Length
+        public override int Length
         {
             get { return 3; }
         }
 
-        public void AddToGrid(GridValues[,] array)
-        {
-            switch (gridSquare.Orientation)
-            {
-                case Orientation.Horizontal:
-                    PlaceShipHorizontally(gridSquare, array);
-                    break;
-                case Orientation.Vertical:
-                    PlaceShipVertically(gridSquare, array);
-                    break;
-            }
-        }
 
         private void PlaceShipVertically(Position shipPosition, GridValues[,] array)
         {

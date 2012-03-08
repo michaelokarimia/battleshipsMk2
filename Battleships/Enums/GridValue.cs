@@ -1,6 +1,6 @@
 ﻿namespace Battleships.Enums
 {
-    public enum GridValues
+    public enum GridValue
     {
         EmptyCellValue = -1,
         MissedShot = 1,

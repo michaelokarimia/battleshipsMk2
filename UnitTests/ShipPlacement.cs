@@ -103,7 +103,7 @@ namespace UnitTests
         {
             var position = new Position(0, 0, Orientation.Vertical);
             board.AddShip(new AircraftCarrier(position));
-            Assert.AreEqual(GridValues.AircraftcarrierIntact, board.GetCellValue(0,0));
+            Assert.AreEqual(GridValue.AircraftcarrierIntact, board.GetCellValue(0,0));
         }
 
         [Test]

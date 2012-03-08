@@ -4,25 +4,16 @@ namespace Battleships.Ships
 {
     public class AircraftCarrier : Ship
     {
-        public AircraftCarrier(Position coOrdinate)
-        {
-            Position = coOrdinate;
-            GridUpdator = GridUpdateFactory.GetOrientatedFactory(coOrdinate);
-        }
-
-        public Position CoOrdinate
-        {
-            get { return Position; }
-        }
+        public AircraftCarrier(Position coOrdinate): base(coOrdinate){}
 
         public override int Length
         {
             get { return 5; }
         }
 
-        public override GridValues GridValue
+        public override GridValue GridValue
         {
-            get { return GridValues.AircraftcarrierIntact; }
+            get { return GridValue.AircraftcarrierIntact; }
         }
 
           

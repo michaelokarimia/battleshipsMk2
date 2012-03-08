@@ -12,20 +12,20 @@ namespace Battleships
     {
         private readonly int _height;
         private readonly int _width;
-        private readonly GridValues[,] array;
+        private readonly GridValue[,] array;
         private readonly List<Ship> placedShips = new List<Ship>();
 
         public Board(int width, int height)
         {
             _height = height;
             _width = width;
-            array = new GridValues[_width, _height];
+            array = new GridValue[_width, _height];
   
             foreach (var x in Enumerable.Range(0, _width))
             {
                 foreach (var y in Enumerable.Range(0, _height))
                 {
-                    array[x, y] = GridValues.EmptyCellValue;
+                    array[x, y] = GridValue.EmptyCellValue;
                 }
             }
 
@@ -43,16 +43,16 @@ namespace Battleships
         }
 
 
-        public GridValues GetCellValue(int height, int width)
+        public GridValue GetCellValue(int height, int width)
         {
             return array[height,width];
         }
 
         public void FireShot(int x, int y)
         {
-            if (array[x,y].Equals(GridValues.EmptyCellValue))
+            if (array[x,y].Equals(GridValue.EmptyCellValue))
             {
-                array[x, y] = GridValues.MissedShot;
+                array[x, y] = GridValue.MissedShot;
             }
             else
             {

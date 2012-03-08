@@ -37,7 +37,7 @@ namespace UnitTests
             {
                 for (var y = 0; y < HEIGHT; y++)
                 {
-                    Assert.AreEqual(GridValues.EmptyCellValue, board.GetCellValue(x, y));
+                    Assert.AreEqual(GridValue.EmptyCellValue, board.GetCellValue(x, y));
                 }
             }
         }

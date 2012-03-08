@@ -2,13 +2,13 @@
 using Battleships.Exceptions;
 using Battleships.Ships;
 
-namespace Battleships
+namespace Battleships.GridUpdators
 {
     public class VerticalGridUpdatorImpl : AbstractGridUpdator
     {
-        public override void Update(Ship vessel, GridValues[,] array)
+        public override void Update(Ship vessel, GridValue[,] array)
         {
-            var shipPosition = vessel.Position;
+            var shipPosition = vessel.GetPosition;
             int Length = vessel.Length;
             if (shipPosition.Y + Length > array.GetUpperBound(1))
             {
@@ -20,7 +20,7 @@ namespace Battleships
 
             for (int y = shipPosition.Y; y < (Length + shipPosition.Y); y++)
             {
-                if (array[row, y] != GridValues.EmptyCellValue)
+                if (array[row, y] != GridValue.EmptyCellValue)
                 {
                     throw new InvalidShipPlacementException(string.Format("There is already a ship here:{0}",
                                                                           array[row, y]));

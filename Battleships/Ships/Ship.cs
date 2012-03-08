@@ -1,14 +1,23 @@
 ﻿using Battleships.Enums;
+using Battleships.GridUpdators;
 
 namespace Battleships.Ships
 {
     public abstract class Ship
     {
-        public Position Position { get; protected set;  }
-        public AbstractGridUpdator GridUpdator { get; protected set; }
+        private readonly Position coOoridinate;
+
+        public Ship(Position position)
+        {
+            coOoridinate = position;
+            GridUpdator = GridUpdateFactory.GetOrientatedFactory(position);
+        }
+
+        public Position GetPosition { get { return coOoridinate; } }
+        protected AbstractGridUpdator GridUpdator { get; set; }
         public abstract int Length { get; }
-        public abstract GridValues GridValue { get; }
-        public void AddToGrid(GridValues[,] arrary)
+        public abstract GridValue GridValue { get; }
+        public void AddToGrid(GridValue[,] arrary)
         {
             GridUpdator.Update(this, arrary);
         }

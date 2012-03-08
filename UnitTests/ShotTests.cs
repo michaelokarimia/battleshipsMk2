@@ -22,7 +22,7 @@ namespace UnitTests
         public void ShotFiredAtEmptySquareIsAMiss()
         {
             board.FireShot(5, 5);
-            Assert.AreEqual(GridValues.MissedShot, board.GetCellValue(5, 5));
+            Assert.AreEqual(GridValue.MissedShot, board.GetCellValue(5, 5));
         }
 
         [Test]

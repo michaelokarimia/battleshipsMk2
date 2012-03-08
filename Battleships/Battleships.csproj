@@ -39,17 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractGridUpdator.cs" />
     <Compile Include="Board.cs" />
-    <Compile Include="Enums\GridValues.cs" />
+    <Compile Include="Enums\GridValue.cs" />
     <Compile Include="Enums\Orientation.cs" />
     <Compile Include="Enums\Position.cs" />
     <Compile Include="Exceptions\InvalidShipPlacementException.cs" />
     <Compile Include="Exceptions\InvalidShotException.cs" />
     <Compile Include="Exceptions\ShipAlreadyPlacedException.cs" />
     <Compile Include="Gamestate.cs" />
-    <Compile Include="GridUpdateFactory.cs" />
-    <Compile Include="HorizontalGridUpdatorImpl.cs" />
+    <Compile Include="GridUpdators\AbstractGridUpdator.cs" />
+    <Compile Include="GridUpdators\GridUpdateFactory.cs" />
+    <Compile Include="GridUpdators\HorizontalGridUpdatorImpl.cs" />
+    <Compile Include="GridUpdators\VerticalGridUpdatorImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ships\AircraftCarrier.cs" />
     <Compile Include="Ships\BattleShip.cs" />
@@ -57,7 +58,6 @@
     <Compile Include="Ships\Minesweeper.cs" />
     <Compile Include="Ships\Ship.cs" />
     <Compile Include="Ships\Submarine.cs" />
-    <Compile Include="VerticalGridUpdatorImpl.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
